@@ -1,187 +1,65 @@
-import { useEffect, useState } from "react";
-import confetti from "canvas-confetti";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import pipAvatar from "./assets/pip_avatar_cloud.webp";
-import Projects from "./components/Projects";
-import Story from "./components/Story";
-import DreamLab from "./components/DreamLab";
+import { useSite } from "./context/SiteContext";
+
+import Home from "./pages/Home";
+import ProjectsPage from "./pages/ProjectsPage";
+import DreamLabPage from "./pages/DreamLabPage";
+import StoryPage from "./pages/StoryPage";
+import About from "./pages/About";
 
 function App() {
-  const [mousePosition, setMousePosition] = useState({
-  x: 0,
-  y: 0,
-});
-const [dreamMode, setDreamMode] = useState(false);
-const [soundOn, setSoundOn] = useState(true);
-const [pipClicks, setPipClicks] = useState(0);
-const [secretFound, setSecretFound] = useState(false);
-const playChime = () => {
-  if (!soundOn) return;
+  const {
+    dreamMode,
+    soundOn,
+    toggleDreamMode,
+    toggleSound,
+  } = useSite();
 
-  const AudioContext =
-    window.AudioContext || window.webkitAudioContext;
-
-  const audioContext = new AudioContext();
-
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
-
-  oscillator.type = "sine";
-  oscillator.frequency.setValueAtTime(
-    660,
-    audioContext.currentTime
-  );
-
-  oscillator.frequency.exponentialRampToValueAtTime(
-    880,
-    audioContext.currentTime + 0.12
-  );
-
-  gainNode.gain.setValueAtTime(
-    0.0001,
-    audioContext.currentTime
-  );
-
-  gainNode.gain.exponentialRampToValueAtTime(
-    0.08,
-    audioContext.currentTime + 0.02
-  );
-
-  gainNode.gain.exponentialRampToValueAtTime(
-    0.0001,
-    audioContext.currentTime + 0.18
-  );
-
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
-
-  oscillator.start();
-  oscillator.stop(audioContext.currentTime + 0.18);
-};
-const handlePipClick = () => {
-  const nextClicks = pipClicks + 1;
-
-  setPipClicks(nextClicks);
-
-  if (nextClicks === 5) {
-    setSecretFound(true);
-
-    confetti({
-      particleCount: 120,
-      spread: 80,
-      origin: {
-        y: 0.6,
-      },
-    });
-
-    playChime();
-  }
-};
-useEffect(() => {
-  const handleMouseMove = (event) => {
-    setMousePosition({
-      x: event.clientX,
-      y: event.clientY,
-    });
-  };
-
-  window.addEventListener("mousemove", handleMouseMove);
-
-  return () => {
-    window.removeEventListener("mousemove", handleMouseMove);
-  };
-}, []);
   return (
-    <>
-     <main className={`hero ${dreamMode ? "dream-mode" : ""}`}>
-        <div className="stars" aria-hidden="true">
-          ✦ ⋆ ✧ ✦ ⋆
-        </div>
+    <BrowserRouter>
+  <div className={dreamMode ? "app dream-mode" : "app day-mode"}>
+    <nav className={`site-nav ${dreamMode ? "nav-dream-mode" : ""}`}>
+  <div className="nav-logo">PIP ✦</div>
 
-        <div className="hero-content">
-         <button
-  className="mode-toggle"
-  onClick={() => {
-    setDreamMode(!dreamMode);
-    playChime();
-  }}
->
-  <button
-  className="sound-toggle"
-  onClick={() => setSoundOn(!soundOn)}
-  aria-label={soundOn ? "Mute sounds" : "Enable sounds"}
->
-  {soundOn ? "🔊 Sound On" : "🔇 Sound Off"}
-</button>
-  {dreamMode ? "☀️ Day Mode" : "🌙 Dream Mode"}
-</button>
-          <p className="eyebrow">
-            MIDNIGHT NURSERY · DREAM DEPARTMENT
-          </p>
-
-          <h1>Meet Pip.</h1>
-
-          <p className="role">
-            Junior Dream Engineer
-          </p>
-
-          <p className="tagline">
-            I build the dreams you fall asleep inside.
-          </p>
-
-          <button
-  className="dream-button"
-  onClick={playChime}
->
-  Enter the Dream Lab ✦
-</button>
-        </div>
-
-        <div className="pip-container">
-        <div
-  className="pip-avatar-wrapper"
-  style={{
-    "--mouse-x": `${mousePosition.x}px`,
-    "--mouse-y": `${mousePosition.y}px`,
-  }}
->
-  <img
-  src={pipAvatar}
-  alt="Pip, the gentle Skull Baby"
-  className="pip-avatar"
-  onClick={handlePipClick}
-/>
-{secretFound && (
-  <div className="secret-message">
-    <p>✨ DREAM DELIVERY COMPLETE ✨</p>
-    <h3>You found Pip's secret!</h3>
-    <span>
-      The Midnight Nursery has a little surprise
-      for curious dreamers.
-    </span>
+  <div className="nav-links">
+    <Link to="/">Home</Link>
+    <Link to="/projects">Projects</Link>
+    <Link to="/dream-lab">Dream Lab</Link>
+    <Link to="/story">Story</Link>
+    <Link to="/about">About</Link>
   </div>
-)}
-</div>
-<div
-  className="cursor-orb"
-  style={{
-    left: mousePosition.x,
-    top: mousePosition.y,
-  }}
-/>
+
+  <div className="nav-controls">
+    <button
+      type="button"
+      className="nav-control"
+      onClick={toggleSound}
+      aria-label={soundOn ? "Turn sound off" : "Turn sound on"}
+    >
+      {soundOn ? "🔊" : "🔇"}
+    </button>
+
+    <button
+      type="button"
+      className="nav-control"
+      onClick={toggleDreamMode}
+      aria-label={dreamMode ? "Switch to day mode" : "Switch to dream mode"}
+    >
+      {dreamMode ? "☀️" : "🌙"}
+    </button>
+  </div>
+</nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/dream-lab" element={<DreamLabPage />} />
+        <Route path="/story" element={<StoryPage />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
         </div>
-
-        <p className="scroll-hint">
-          ↓ scroll to explore Pip's world ↓
-        </p>
-      </main>
-
-           <Projects />
-
-      <DreamLab />
-
-      <Story />
-    </>
+    </BrowserRouter>
   );
 }
 

@@ -831,3 +831,1367 @@ button {
     padding: 30px 20px;
   }
 }
+/* ================================
+   SITE NAVIGATION
+   ================================ */
+
+.site-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  width: min(900px, calc(100% - 40px));
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  background: rgba(255, 248, 241, 0.88);
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 50px;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  box-shadow: 0 8px 30px rgba(92, 64, 51, 0.12);
+}
+
+.nav-logo {
+  flex-shrink: 0;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 14px;
+
+  color: var(--brown);
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  border-radius: 30px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(163, 64, 99, 0.1);
+  color: var(--berry);
+  transform: translateY(-2px);
+}
+
+/* Mobile navigation */
+
+@media (max-width: 700px) {
+  .site-nav {
+    width: calc(100% - 24px);
+    top: 12px;
+
+    padding: 10px 14px;
+
+    flex-direction: column;
+    gap: 8px;
+
+    border-radius: 24px;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+}
+/* =================================
+   ABOUT PAGE
+   ================================= */
+
+.about-page {
+  min-height: 100vh;
+  padding: 150px 7vw 100px;
+  background: #f4e9dc;
+  color: var(--brown);
+}
+
+.about-hero {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-hero h1 {
+  margin: 15px 0 20px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(52px, 8vw, 100px);
+  line-height: 0.95;
+
+  color: var(--brown);
+}
+
+.about-intro {
+  max-width: 700px;
+  margin: 0 auto 55px;
+
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.about-card {
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 35px 40px;
+
+  text-align: left;
+
+  background: #fff8f1;
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 28px;
+
+  box-shadow: 0 20px 50px rgba(92, 64, 51, 0.1);
+}
+
+.about-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 25px;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: var(--berry);
+}
+
+.about-dot {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+  background: var(--berry);
+}
+
+.about-card p {
+  margin: 0 0 18px;
+
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* INTERESTS */
+
+.about-skills {
+  max-width: 1100px;
+  margin: 120px auto 0;
+
+  text-align: center;
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+
+  margin-top: 40px;
+}
+
+.interest-card {
+  padding: 30px 22px;
+
+  background: rgba(255, 248, 241, 0.7);
+
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 24px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.interest-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 18px 35px rgba(92, 64, 51, 0.12);
+}
+
+.interest-card > span {
+  display: block;
+
+  margin-bottom: 18px;
+
+  font-size: 34px;
+  color: var(--berry);
+}
+
+.interest-card h3 {
+  margin: 0 0 10px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 25px;
+}
+
+.interest-card p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* FINAL NOTE */
+
+.about-note {
+  max-width: 900px;
+  margin: 120px auto 0;
+  padding: 60px 50px;
+
+  text-align: center;
+
+  background: var(--brown);
+  color: #fff8f1;
+
+  border-radius: 32px;
+}
+
+.about-note h2 {
+  max-width: 700px;
+  margin: 15px auto 20px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(35px, 5vw, 58px);
+  line-height: 1.05;
+}
+
+.about-note p:last-child {
+  max-width: 650px;
+  margin: 0 auto;
+
+  line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .about-page {
+    padding: 130px 20px 70px;
+  }
+
+  .interest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-card {
+    padding: 28px 24px;
+  }
+
+  .about-note {
+    padding: 45px 25px;
+  }
+}
+
+@media (max-width: 520px) {
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero h1 {
+    font-size: 55px;
+  }
+
+  .about-intro {
+    font-size: 16px;
+  }
+}
+/* =================================
+   PROJECTS PAGE
+   ================================= */
+
+.projects-page {
+  min-height: 100vh;
+  padding: 150px 7vw 100px;
+  background: #f4e9dc;
+  color: var(--brown);
+}
+
+.projects-hero {
+  max-width: 1050px;
+  margin: 0 auto 80px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.projects-heading {
+  max-width: 750px;
+}
+
+.projects-heading h1 {
+  margin: 15px 0 20px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(52px, 8vw, 100px);
+  line-height: 0.95;
+}
+
+.projects-intro {
+  max-width: 650px;
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.workshop-status {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 12px 16px;
+
+  border: 1px solid rgba(92, 64, 51, 0.15);
+  border-radius: 30px;
+
+  background: rgba(255, 248, 241, 0.65);
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+  background: #62a66a;
+
+  box-shadow: 0 0 0 5px rgba(98, 166, 106, 0.12);
+}
+
+.projects-grid-section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  position: relative;
+
+  min-height: 470px;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #fff8f1;
+
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 28px;
+
+  box-shadow: 0 15px 40px rgba(92, 64, 51, 0.07);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 25px 55px rgba(92, 64, 51, 0.13);
+}
+
+.project-card.project-active {
+  border-color: var(--berry);
+}
+
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.project-number {
+  margin: 0;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: var(--berry);
+}
+
+.project-icon {
+  color: var(--berry);
+}
+
+.project-category {
+  margin: 55px 0 12px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: rgba(92, 64, 51, 0.55);
+}
+
+.project-card h2 {
+  margin: 0 0 18px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.project-description {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.project-extra {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 25px;
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: rgba(163, 64, 99, 0.07);
+
+  animation: projectExtraAppear 0.3s ease;
+}
+
+.project-extra span {
+  flex-shrink: 0;
+
+  color: var(--berry);
+}
+
+.project-extra p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.project-button {
+  margin-top: auto;
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 13px 16px;
+
+  border: 1px solid rgba(92, 64, 51, 0.15);
+  border-radius: 15px;
+
+  background: transparent;
+
+  color: var(--brown);
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.project-button:hover {
+  background: var(--berry);
+  color: white;
+}
+
+.arrow-rotate {
+  transform: rotate(90deg);
+}
+
+.projects-footer {
+  max-width: 850px;
+
+  margin: 130px auto 0;
+
+  padding: 65px 40px;
+
+  text-align: center;
+
+  background: var(--brown);
+  color: #fff8f1;
+
+  border-radius: 32px;
+}
+
+.projects-footer h2 {
+  max-width: 650px;
+
+  margin: 15px auto;
+
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(35px, 5vw, 60px);
+  line-height: 1.05;
+}
+
+.projects-footer p:last-child {
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  line-height: 1.7;
+}
+
+@keyframes projectExtraAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* PROJECTS MOBILE */
+
+@media (max-width: 850px) {
+  .projects-hero {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 520px) {
+  .projects-page {
+    padding: 130px 20px 70px;
+  }
+
+  .projects-footer {
+    padding: 45px 25px;
+  }
+}
+/* =================================
+   DREAM LAB PAGE
+   ================================= */
+
+.dream-lab-page {
+  min-height: 100vh;
+  padding: 150px 7vw 100px;
+  background: #f4e9dc;
+  color: var(--brown);
+}
+
+.dream-lab-hero {
+  max-width: 1100px;
+  margin: 0 auto 100px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.dream-lab-heading h1 {
+  margin: 15px 0 25px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(50px, 7vw, 92px);
+  line-height: 0.95;
+}
+
+.dream-intro {
+  max-width: 550px;
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* DREAM MACHINE */
+
+.dream-machine {
+  position: relative;
+
+  width: 300px;
+  height: 300px;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.machine-core {
+  position: relative;
+  z-index: 3;
+
+  width: 145px;
+  height: 145px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--brown);
+  color: #fff8f1;
+
+  box-shadow:
+    0 20px 50px rgba(92, 64, 51, 0.25),
+    0 0 0 15px rgba(163, 64, 99, 0.08);
+}
+
+.machine-core span {
+  font-size: 25px;
+  color: #f3c6d7;
+}
+
+.machine-core small {
+  margin-top: 5px;
+
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.machine-core strong {
+  font-family: "DM Serif Display", serif;
+  font-size: 30px;
+}
+
+.machine-orbit {
+  position: absolute;
+
+  border: 1px dashed rgba(163, 64, 99, 0.35);
+
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 230px;
+  height: 230px;
+
+  animation: dreamOrbit 15s linear infinite;
+}
+
+.orbit-two {
+  width: 300px;
+  height: 300px;
+
+  transform: rotate(45deg);
+
+  animation: dreamOrbitReverse 20s linear infinite;
+}
+
+@keyframes dreamOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dreamOrbitReverse {
+  from {
+    transform: rotate(45deg);
+  }
+
+  to {
+    transform: rotate(-315deg);
+  }
+}
+
+/* SELECTOR */
+
+.dream-selector {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  padding: 50px;
+
+  background: rgba(255, 248, 241, 0.7);
+
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 32px;
+
+  box-shadow: 0 20px 60px rgba(92, 64, 51, 0.07);
+}
+
+.dream-selector-header {
+  text-align: center;
+}
+
+.dream-selector-header h2 {
+  margin: 12px 0 40px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 45px;
+}
+
+.dream-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.dream-option {
+  position: relative;
+
+  min-height: 150px;
+
+  padding: 25px 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: 1px solid rgba(92, 64, 51, 0.12);
+  border-radius: 22px;
+
+  background: #fff8f1;
+
+  color: var(--brown);
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.dream-option:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--berry);
+
+  box-shadow: 0 15px 35px rgba(92, 64, 51, 0.1);
+}
+
+.dream-option.dream-selected {
+  transform: translateY(-5px);
+
+  border: 2px solid var(--berry);
+
+  background: rgba(163, 64, 99, 0.07);
+
+  box-shadow: 0 15px 35px rgba(163, 64, 99, 0.12);
+}
+
+.dream-icon {
+  font-size: 34px;
+}
+
+.dream-option-name {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.dream-option-arrow {
+  position: absolute;
+
+  top: 12px;
+  right: 14px;
+
+  opacity: 0.35;
+}
+
+/* CREATE */
+
+.dream-create-area {
+  margin-top: 45px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-dream-button {
+  min-width: 260px;
+
+  margin-top: 12px;
+
+  padding: 16px 25px;
+
+  border: none;
+  border-radius: 50px;
+
+  background: var(--berry);
+  color: white;
+
+  font-family: inherit;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 30px rgba(163, 64, 99, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.create-dream-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+
+  box-shadow: 0 18px 40px rgba(163, 64, 99, 0.25);
+}
+
+.create-dream-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* RESULT */
+
+.dream-result {
+  max-width: 900px;
+
+  margin: 70px auto 0;
+  padding: 45px;
+
+  border-radius: 32px;
+
+  background: var(--brown);
+  color: #fff8f1;
+
+  box-shadow: 0 25px 60px rgba(92, 64, 51, 0.2);
+
+  animation: dreamResultAppear 0.5s ease;
+}
+
+@keyframes dreamResultAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dream-result-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid rgba(255, 248, 241, 0.15);
+}
+
+.dream-number {
+  margin: 0;
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.dream-status {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+
+  color: #d5efc9;
+}
+
+.dream-result-content {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+
+  align-items: center;
+
+  gap: 40px;
+
+  padding: 45px 0;
+}
+
+.dream-result-icon {
+  width: 145px;
+  height: 145px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 248, 241, 0.1);
+
+  font-size: 65px;
+}
+
+.dream-result h2 {
+  margin: 8px 0 15px;
+
+  font-family: "DM Serif Display", serif;
+  font-size: 55px;
+}
+
+.dream-result-text {
+  margin: 0 0 12px;
+
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.dream-detail {
+  margin: 0;
+
+  color: rgba(255, 248, 241, 0.7);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.dream-delivery {
+  padding-top: 20px;
+
+  border-top: 1px solid rgba(255, 248, 241, 0.15);
+
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* DREAM LAB MOBILE */
+
+@media (max-width: 850px) {
+  .dream-lab-hero {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+  }
+
+  .dream-intro {
+    margin: 0 auto;
+  }
+
+  .dream-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .dream-lab-page {
+    padding: 130px 20px 70px;
+  }
+
+  .dream-machine {
+    width: 240px;
+    height: 240px;
+  }
+
+  .orbit-one {
+    width: 185px;
+    height: 185px;
+  }
+
+  .orbit-two {
+    width: 240px;
+    height: 240px;
+  }
+
+  .dream-selector {
+    padding: 30px 20px;
+  }
+
+  .dream-options {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dream-result {
+    padding: 30px 22px;
+  }
+
+  .dream-result-content {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+  }
+
+  .dream-result-icon {
+    margin: auto;
+  }
+
+  .dream-result h2 {
+    font-size: 45px;
+  }
+
+  .dream-result-top {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* Navigation controls */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.nav-control {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(92, 64, 51, 0.2);
+  border-radius: 50%;
+  background: #fff8f1;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.nav-control:hover {
+  transform: translateY(-2px);
+}
+
+.nav-dream-mode {
+  background: #231d2d;
+}
+
+.nav-dream-mode .nav-logo,
+.nav-dream-mode .nav-links a {
+  color: #fff8f1;
+}
+
+.nav-dream-mode .nav-control {
+  background: #393047;
+  color: white;
+  border-color: #63566f;
+}
+/* Whole website day and dream themes */
+.app {
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app.day-mode {
+  background-color: #fff8f1;
+  color: #352b32;
+  color-scheme: light;
+}
+
+.app.dream-mode {
+  background-color: #171322;
+  color: #f8efff;
+  color-scheme: dark;
+}
+
+.app.dream-mode h1,
+.app.dream-mode h2,
+.app.dream-mode h3,
+.app.dream-mode p,
+.app.dream-mode label,
+.app.dream-mode li {
+  color: #f8efff;
+}
+
+.app.dream-mode a {
+  color: #d9baff;
+}
+
+/* Common page containers */
+.app.dream-mode main,
+.app.dream-mode .page,
+.app.dream-mode .home,
+.app.dream-mode .projects-page,
+.app.dream-mode .dream-lab-page,
+.app.dream-mode .story-page,
+.app.dream-mode .about-page {
+  background-color: #171322;
+  color: #f8efff;
+}
+
+.app.dream-mode input,
+.app.dream-mode textarea,
+.app.dream-mode select {
+  background-color: #292238;
+  color: #f8efff;
+  border-color: #625274;
+}
+/* FIX: Make all Dream Mode content readable */
+.app.dream-mode {
+  background: #171322 !important;
+  color: #f8efff !important;
+}
+
+.app.dream-mode h1,
+.app.dream-mode h2,
+.app.dream-mode h3,
+.app.dream-mode h4,
+.app.dream-mode p,
+.app.dream-mode span,
+.app.dream-mode label,
+.app.dream-mode li,
+.app.dream-mode strong,
+.app.dream-mode small {
+  color: #f8efff;
+}
+
+/* Make cards visible against the dark background */
+.app.dream-mode .card,
+.app.dream-mode [class*="card"],
+.app.dream-mode [class*="panel"],
+.app.dream-mode [class*="container"] {
+  color: #f8efff;
+}
+
+/* Keep buttons readable */
+.app.dream-mode button {
+  color: #f8efff;
+}
+
+/* Keep form fields readable */
+.app.dream-mode input,
+.app.dream-mode textarea,
+.app.dream-mode select {
+  background: #292238;
+  color: #ffffff;
+  border: 1px solid #74618d;
+}
+
+.app.dream-mode input::placeholder,
+.app.dream-mode textarea::placeholder {
+  color: #c7b9d8;
+}
+
+/* Keep navigation visible */
+.app.dream-mode .site-nav {
+  background: #211a30;
+  color: #ffffff;
+}
+
+.app.dream-mode .site-nav a {
+  color: #f8efff;
+}
+
+/* =====================================
+   DREAM MODE — VISIBILITY FIX
+   ===================================== */
+
+.app.dream-mode {
+  background: #171322 !important;
+  color: #f8efff;
+}
+
+/* Main page backgrounds */
+.app.dream-mode .hero,
+.app.dream-mode .projects-section,
+.app.dream-mode .story-section,
+.app.dream-mode .dream-lab,
+.app.dream-mode .about-page,
+.app.dream-mode .projects-page,
+.app.dream-mode .dream-lab-page,
+.app.dream-mode .story-page {
+  background: #171322 !important;
+  color: #f8efff;
+}
+
+/* Headings and normal text */
+.app.dream-mode h1,
+.app.dream-mode h2,
+.app.dream-mode h3,
+.app.dream-mode h4,
+.app.dream-mode p,
+.app.dream-mode li,
+.app.dream-mode label {
+  color: #f8efff;
+}
+
+/* Eyebrows, labels and accent text */
+.app.dream-mode .eyebrow,
+.app.dream-mode .role,
+.app.dream-mode .section-eyebrow,
+.app.dream-mode .section-heading h2,
+.app.dream-mode .projects-heading h2,
+.app.dream-mode .about-card-header,
+.app.dream-mode .project-number,
+.app.dream-mode .project-icon,
+.app.dream-mode .dream-option-arrow {
+  color: #ffb8d0;
+}
+
+/* Cards and selector panels */
+.app.dream-mode .project-card,
+.app.dream-mode .about-card,
+.app.dream-mode .interest-card,
+.app.dream-mode .dream-selector,
+.app.dream-mode .dream-option,
+.app.dream-mode .workshop-status {
+  background: #292238 !important;
+  color: #f8efff;
+  border-color: #554565;
+}
+
+/* Card descriptions and project details */
+.app.dream-mode .project-category,
+.app.dream-mode .project-description,
+.app.dream-mode .project-extra,
+.app.dream-mode .about-card p,
+.app.dream-mode .interest-card p,
+.app.dream-mode .dream-intro,
+.app.dream-mode .story-content p {
+  color: #e0d4ed;
+}
+
+/* Buttons */
+.app.dream-mode .project-button,
+.app.dream-mode .project-card button,
+.app.dream-mode .dream-option {
+  color: #f8efff;
+  border-color: #8d6ba8;
+}
+
+.app.dream-mode .project-button:hover,
+.app.dream-mode .project-card button:hover {
+  background: #a34063 !important;
+  color: #ffffff !important;
+}
+
+/* Selected dream option */
+.app.dream-mode .dream-option.dream-selected {
+  background: #49304f !important;
+  border-color: #ffb8d0;
+}
+
+/* Keep the result card's existing dark design readable */
+.app.dream-mode .dream-result {
+  background: #30233e !important;
+  color: #ffffff;
+  border-color: #ffb8d0;
+}
+
+.app.dream-mode .dream-result h2,
+.app.dream-mode .dream-result h3,
+.app.dream-mode .dream-result p,
+.app.dream-mode .dream-result span,
+.app.dream-mode .dream-result strong {
+  color: #ffffff;
+}
+
+/* Navigation */
+.app.dream-mode .site-nav {
+  background: rgba(35, 29, 45, 0.96) !important;
+  border-color: #554565;
+}
+
+.app.dream-mode .site-nav .nav-logo,
+.app.dream-mode .site-nav .nav-links a {
+  color: #ffffff;
+}
+
+.app.dream-mode .nav-control {
+  background: #393047;
+  color: #ffffff;
+  border-color: #74618d;
+}
+
+/* Form fields */
+.app.dream-mode input,
+.app.dream-mode textarea,
+.app.dream-mode select {
+  background: #292238;
+  color: #ffffff;
+  border-color: #74618d;
+}
+
+.app.dream-mode input::placeholder,
+.app.dream-mode textarea::placeholder {
+  color: #c7b9d8;
+}
+
+/* Preserve readable links */
+.app.dream-mode a {
+  color: #e2c5ff;
+}
+
+/* Smooth transitions */
+.app,
+.app * {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
