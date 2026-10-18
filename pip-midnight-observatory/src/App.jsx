@@ -4,6 +4,7 @@ import "./App.css";
 import pipAvatar from "./assets/pip_avatar_cloud.webp";
 import Projects from "./components/Projects";
 import Story from "./components/Story";
+import DreamLab from "./components/DreamLab";
 
 function App() {
   const [mousePosition, setMousePosition] = useState({
@@ -175,7 +176,9 @@ useEffect(() => {
         </p>
       </main>
 
-      <Projects />
+           <Projects />
+
+      <DreamLab />
 
       <Story />
     </>

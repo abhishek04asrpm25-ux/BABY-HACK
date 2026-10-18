@@ -675,3 +675,159 @@ button {
     transform: translateY(0);
   }
 }
+/* DREAM LAB */
+
+.dream-lab {
+  padding: 120px 7vw;
+  background: #f4e9dc;
+}
+
+.dream-lab-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dream-lab h2 {
+  max-width: 750px;
+  margin: 15px auto;
+  font-family: "DM Serif Display", serif;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1;
+  color: var(--brown);
+}
+
+.dream-intro {
+  margin: 20px auto 45px;
+  font-size: 18px;
+  color: var(--brown);
+}
+
+.dream-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 850px;
+  margin: 0 auto 30px;
+}
+
+.dream-option {
+  padding: 25px 15px;
+  border: 1px solid rgba(92, 64, 51, 0.15);
+  border-radius: 20px;
+  background: rgba(255, 248, 241, 0.7);
+  color: var(--brown);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dream-option:hover {
+  transform: translateY(-5px);
+}
+
+.dream-option.dream-selected {
+  border-color: var(--berry);
+  background: rgba(163, 64, 99, 0.1);
+  transform: translateY(-5px);
+}
+
+.dream-icon {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.create-dream-button {
+  padding: 15px 28px;
+  border: none;
+  border-radius: 30px;
+  background: var(--berry);
+  color: white;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.create-dream-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+.create-dream-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dream-result {
+  max-width: 600px;
+  margin: 50px auto 0;
+  padding: 40px;
+  border: 2px solid var(--berry);
+  border-radius: 28px;
+  background: #fff8f1;
+  box-shadow: 0 15px 40px rgba(92, 64, 51, 0.12);
+  animation: dreamAppear 0.5s ease-out;
+}
+
+.dream-number {
+  margin: 0;
+  color: var(--berry);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.dream-result-icon {
+  margin: 20px 0 10px;
+  font-size: 50px;
+}
+
+.dream-result h3 {
+  margin: 0 0 15px;
+  font-family: "DM Serif Display", serif;
+  font-size: 38px;
+  color: var(--brown);
+}
+
+.dream-result > p:not(.dream-number) {
+  max-width: 450px;
+  margin: 0 auto 20px;
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+.dream-status {
+  display: inline-block;
+  color: var(--berry);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+@keyframes dreamAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 700px) {
+  .dream-lab {
+    padding: 80px 20px;
+  }
+
+  .dream-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dream-result {
+    padding: 30px 20px;
+  }
+}
