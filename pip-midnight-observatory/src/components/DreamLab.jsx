@@ -1,66 +1,144 @@
+
 import { useState } from "react";
+
+const dreams = {
+  calm: {
+    icon: "\u2601\uFE0F",
+    name: "CALM",
+    color: "soft",
+    stories: [
+      {
+        text: "Pip has packed a soft cloud journey for a peaceful night.",
+        detail:
+          "A quiet sky, slow-moving clouds, and gentle moonlight create a little space to breathe.",
+      },
+      {
+        text: "Pip invites you to a garden where the stars grow like flowers.",
+        detail:
+          "Follow a silver path through glowing petals while the night breeze carries your worries away.",
+      },
+      {
+        text: "Pip has found a tiny lighthouse above the clouds.",
+        detail:
+          "Its warm light travels across a silent sky, guiding every wandering cloud safely home.",
+      },
+    ],
+  },
+
+  adventure: {
+    icon: "\u2728",
+    name: "ADVENTURE",
+    color: "bright",
+    stories: [
+      {
+        text: "Pip has prepared a rooftop adventure beneath a sky full of stars.",
+        detail:
+          "Cross sleepy rooftops and glowing bridges to discover a secret observatory.",
+      },
+      {
+        text: "Pip has discovered a train that travels between constellations.",
+        detail:
+          "Every station opens onto a new world, and your next destination is written in the stars.",
+      },
+      {
+        text: "Pip invites you to explore a floating island beyond the moon.",
+        detail:
+          "Discover upside-down waterfalls, unusual creatures, and a map that draws itself as you travel.",
+      },
+    ],
+  },
+
+  mystery: {
+    icon: "\uD83C\uDF19",
+    name: "MYSTERY",
+    color: "mysterious",
+    stories: [
+      {
+        text: "Pip has packed a moonlit path through a quiet cloud forest.",
+        detail:
+          "Silver trees whisper secrets, and a trail of tiny lights leads somewhere unknown.",
+      },
+      {
+        text: "Pip has found a mysterious door hidden inside a falling star.",
+        detail:
+          "Behind it waits a room full of floating clocks, forgotten maps, and one unanswered question.",
+      },
+      {
+        text: "Pip noticed that one star is missing from the night sky.",
+        detail:
+          "Follow the clues left by the moon and discover why the smallest star has disappeared.",
+      },
+    ],
+  },
+
+  happiness: {
+    icon: "\uD83C\uDF08",
+    name: "HAPPINESS",
+    color: "happy",
+    stories: [
+      {
+        text: "Pip has prepared a bright little dream filled with laughter and sunshine.",
+        detail:
+          "Warm sunlight, impossible colors, and cheerful clouds turn an ordinary day into something magical.",
+      },
+      {
+        text: "Pip invites you to a festival floating above a rainbow.",
+        detail:
+          "Music fills the sky, lanterns dance in the breeze, and every cloud seems to be smiling.",
+      },
+      {
+        text: "Pip has discovered a tiny bakery run by friendly moon rabbits.",
+        detail:
+          "Sweet star-shaped treats appear from the oven while the whole village celebrates together.",
+      },
+    ],
+  },
+};
 
 function DreamLab() {
   const [selectedDream, setSelectedDream] = useState(null);
-const [generatedDream, setGeneratedDream] = useState(null);
-const [dreamNumber, setDreamNumber] = useState(27);
-
-  const dreams = {
-    calm: {
-      icon: "☁️",
-      name: "CALM",
-      color: "soft",
-      text: "Pip has packed a soft cloud journey for a peaceful night.",
-      detail:
-        "A quiet sky, slow-moving clouds, and just enough moonlight to help your thoughts settle.",
-    },
-
-    adventure: {
-      icon: "✨",
-      name: "ADVENTURE",
-      color: "bright",
-      text: "Pip has prepared a rooftop adventure beneath a sky full of stars.",
-      detail:
-        "Tonight's route crosses sleepy rooftops, glowing windows, and a trail of stars leading somewhere unknown.",
-    },
-
-    mystery: {
-      icon: "🌙",
-      name: "MYSTERY",
-      color: "mysterious",
-      text: "Pip has packed a moonlit path through a quiet cloud forest.",
-      detail:
-        "Something is waiting beyond the silver trees. Pip won't say what it is — that's part of the dream.",
-    },
-
-    happiness: {
-      icon: "🌈",
-      name: "HAPPINESS",
-      color: "happy",
-      text: "Pip has prepared a bright little dream filled with laughter and warm sunshine.",
-      detail:
-        "Everything feels lighter here: warm sunlight, impossible colors, and the kind of laughter that makes you forget the time.",
-    },
-  };
+  const [generatedDream, setGeneratedDream] = useState(null);
+  const [nextDreamNumber, setNextDreamNumber] = useState(28);
+  const [dreamHistory, setDreamHistory] = useState([]);
 
   const createDream = () => {
-  if (!selectedDream) return;
+    if (!selectedDream) return;
 
-  setDreamNumber((number) => number + 1);
-  setGeneratedDream(selectedDream);
-};
+    const options = dreams[selectedDream].stories;
 
-  const currentDream = generatedDream
-  ? dreams[generatedDream]
-  : null;
+    // Choose a different story when possible.
+    const availableStories = options.filter(
+      (story) => story !== generatedDream?.story
+        || selectedDream !== generatedDream?.key
+    );
+
+    const storyPool = availableStories.length
+      ? availableStories
+      : options;
+
+    const story =
+      storyPool[Math.floor(Math.random() * storyPool.length)];
+
+    const newDream = {
+      id: nextDreamNumber,
+      number: nextDreamNumber,
+      key: selectedDream,
+      name: dreams[selectedDream].name,
+      icon: dreams[selectedDream].icon,
+      color: dreams[selectedDream].color,
+      story,
+    };
+
+    setGeneratedDream(newDream);
+    setDreamHistory((history) => [newDream, ...history]);
+    setNextDreamNumber((number) => number + 1);
+  };
 
   return (
     <main className="dream-lab-page">
       <section className="dream-lab-hero">
         <div className="dream-lab-heading">
-          <p className="section-eyebrow">
-            PIP'S DREAM LAB
-          </p>
+          <p className="section-eyebrow">PIP'S DREAM LAB</p>
 
           <h1>
             What kind of dream
@@ -73,12 +151,12 @@ const [dreamNumber, setDreamNumber] = useState(27);
           </p>
         </div>
 
-        <div className="dream-machine">
+        <div className="dream-machine" aria-hidden="true">
           <div className="machine-orbit orbit-one"></div>
           <div className="machine-orbit orbit-two"></div>
 
           <div className="machine-core">
-            <span>✦</span>
+            <span>{"\u2726"}</span>
             <small>DREAM</small>
             <strong>LAB</strong>
           </div>
@@ -87,10 +165,7 @@ const [dreamNumber, setDreamNumber] = useState(27);
 
       <section className="dream-selector">
         <div className="dream-selector-header">
-          <p className="section-eyebrow">
-            STEP 01
-          </p>
-
+          <p className="section-eyebrow">STEP 01</p>
           <h2>Choose your feeling</h2>
         </div>
 
@@ -100,34 +175,20 @@ const [dreamNumber, setDreamNumber] = useState(27);
               key={key}
               type="button"
               className={`dream-option ${
-                selectedDream === key
-                  ? "dream-selected"
-                  : ""
+                selectedDream === key ? "dream-selected" : ""
               }`}
-              onClick={() => {
-  setSelectedDream(key);
-  setGeneratedDream(null);
-}}
+              onClick={() => setSelectedDream(key)}
+              aria-pressed={selectedDream === key}
             >
-              <span className="dream-icon">
-                {dream.icon}
-              </span>
-
-              <span className="dream-option-name">
-                {dream.name}
-              </span>
-
-              <span className="dream-option-arrow">
-                ↗
-              </span>
+              <span className="dream-icon">{dream.icon}</span>
+              <span className="dream-option-name">{dream.name}</span>
+              <span className="dream-option-arrow">{"\u2192"}</span>
             </button>
           ))}
         </div>
 
         <div className="dream-create-area">
-          <p className="section-eyebrow">
-            STEP 02
-          </p>
+          <p className="section-eyebrow">STEP 02</p>
 
           <button
             type="button"
@@ -136,56 +197,85 @@ const [dreamNumber, setDreamNumber] = useState(27);
             disabled={!selectedDream}
           >
             {selectedDream
-              ? "CREATE MY DREAM ✦"
+              ? "CREATE MY DREAM \u2726"
               : "CHOOSE A FEELING FIRST"}
           </button>
         </div>
       </section>
 
-      {currentDream && (
-       <section
-  key={`${generatedDream}-${dreamNumber}`}
-  className={`dream-result dream-result-${currentDream.color}`}
->
+      {generatedDream && (
+        <section
+          key={generatedDream.id}
+          className={`dream-result dream-result-${generatedDream.color}`}
+          aria-live="polite"
+        >
           <div className="dream-result-top">
             <p className="dream-number">
-              DREAM #
-              {String(dreamNumber).padStart(3, "0")}
+              DREAM #{String(generatedDream.number).padStart(3, "0")}
             </p>
 
             <span className="dream-status">
-              ● READY FOR DELIVERY
+              {"\u25CF"} READY FOR DELIVERY
             </span>
           </div>
 
           <div className="dream-result-content">
             <div className="dream-result-icon">
-              {currentDream.icon}
+              {generatedDream.icon}
             </div>
 
             <div>
-              <p className="section-eyebrow">
-                DREAM SELECTED
-              </p>
-
-              <h2>{currentDream.name}</h2>
+              <p className="section-eyebrow">YOUR DREAM</p>
+              <h2>{generatedDream.name}</h2>
 
               <p className="dream-result-text">
-                {currentDream.text}
+                {generatedDream.story.text}
               </p>
 
               <p className="dream-detail">
-                {currentDream.detail}
+                {generatedDream.story.detail}
               </p>
             </div>
           </div>
 
           <div className="dream-delivery">
-            <span>✦</span>
-            <span>
-              Pip has prepared your dream.
-            </span>
-            <span>✦</span>
+            <span>{"\u2726"}</span>
+            <span>Pip has prepared your dream.</span>
+            <span>{"\u2726"}</span>
+          </div>
+        </section>
+      )}
+
+      {dreamHistory.length > 0 && (
+        <section className="dream-history">
+          <p className="section-eyebrow">YOUR COLLECTION</p>
+          <h2>Dreams you have discovered</h2>
+          <p className="dream-intro">
+            Every dream you've created during this visit.
+          </p>
+
+          <div className="dream-history-list">
+            {dreamHistory.map((dream) => (
+              <button
+                type="button"
+                key={dream.id}
+                className="dream-history-item"
+                onClick={() => setGeneratedDream(dream)}
+              >
+                <span className="dream-history-icon">{dream.icon}</span>
+
+                <span className="dream-history-copy">
+                  <strong>
+                    DREAM #{String(dream.number).padStart(3, "0")}
+                    {" — "}
+                    {dream.name}
+                  </strong>
+                  <span>{dream.story.text}</span>
+                </span>
+
+                <span aria-hidden="true">{"\u2192"}</span>
+              </button>
+            ))}
           </div>
         </section>
       )}
