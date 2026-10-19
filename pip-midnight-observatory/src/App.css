@@ -2495,3 +2495,283 @@ button {
   background: rgba(35, 27, 54, 0.92);
   border-color: rgba(205, 174, 255, 0.35);
 }
+/* ================================
+   DREAM OBSERVATORY MAP
+   ================================ */
+
+.dream-map-section {
+  max-width: 1100px;
+  margin: 90px auto 60px;
+  padding: 0 24px;
+}
+
+.dream-map-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.dream-map-heading h2 {
+  margin: 8px 0 12px;
+}
+
+.dream-map {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 560px;
+  margin: 0 auto;
+  border: 1px solid rgba(163, 64, 99, 0.2);
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(163, 64, 99, 0.12),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.7),
+      transparent 18%
+    );
+}
+
+.dream-map::before,
+.dream-map::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 1px dashed rgba(163, 64, 99, 0.18);
+}
+
+.dream-map::before {
+  width: 430px;
+  height: 430px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dream-map::after {
+  width: 680px;
+  height: 680px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dream-map-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 170px;
+  height: 170px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid rgba(163, 64, 99, 0.35);
+  background: rgba(255, 248, 241, 0.95);
+  box-shadow: 0 15px 45px rgba(92, 64, 51, 0.15);
+}
+
+.map-center-star {
+  font-size: 1.7rem;
+  margin-bottom: 8px;
+}
+
+.dream-map-center strong {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.dream-map-center small {
+  margin-top: 7px;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  opacity: 0.65;
+}
+
+.dream-map-node {
+  position: absolute;
+  z-index: 4;
+  width: 170px;
+  min-height: 130px;
+  padding: 18px;
+  border: 1px solid rgba(163, 64, 99, 0.2);
+  border-radius: 22px;
+  background: rgba(255, 248, 241, 0.9);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(92, 64, 51, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.dream-map-node:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 35px rgba(92, 64, 51, 0.14);
+}
+
+.dream-map-node:not(.map-node-discovered) {
+  opacity: 0.48;
+  filter: grayscale(0.3);
+}
+
+.dream-map-node.map-node-discovered {
+  opacity: 1;
+  border-color: rgba(163, 64, 99, 0.5);
+}
+
+.map-node-icon {
+  font-size: 2rem;
+}
+
+.dream-map-node strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+}
+
+.dream-map-node small {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.map-calm {
+  left: 8%;
+  top: 15%;
+}
+
+.map-adventure {
+  right: 8%;
+  top: 15%;
+}
+
+.map-mystery {
+  left: 8%;
+  bottom: 15%;
+}
+
+.map-happiness {
+  right: 8%;
+  bottom: 15%;
+}
+
+.dream-map-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 25px;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.dream-map-progress span {
+  opacity: 0.7;
+}
+
+.app.dream-mode .dream-map {
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(170, 130, 230, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.04),
+      transparent 20%
+    );
+}
+
+.app.dream-mode .dream-map-center,
+.app.dream-mode .dream-map-node {
+  background: rgba(35, 27, 54, 0.92);
+}
+
+.app.dream-mode .dream-map-node:not(.map-node-discovered) {
+  opacity: 0.38;
+}
+
+@media (max-width: 700px) {
+  .dream-map-section {
+    margin-top: 60px;
+    padding: 0 16px;
+  }
+
+  .dream-map {
+    height: 700px;
+  }
+
+  .dream-map-center {
+    width: 145px;
+    height: 145px;
+  }
+
+  .dream-map-node {
+    width: 145px;
+    min-height: 115px;
+    padding: 14px;
+  }
+
+  .map-calm {
+    left: 50%;
+    top: 6%;
+    transform: translateX(-50%);
+  }
+
+  .map-calm:hover {
+    transform: translateX(-50%) translateY(-5px);
+  }
+
+  .map-adventure {
+    right: 50%;
+    top: 23%;
+    transform: translateX(50%);
+  }
+
+  .map-adventure:hover {
+    transform: translateX(50%) translateY(-5px);
+  }
+
+  .map-mystery {
+    left: 50%;
+    bottom: 23%;
+    transform: translateX(-50%);
+  }
+
+  .map-mystery:hover {
+    transform: translateX(-50%) translateY(-5px);
+  }
+
+  .map-happiness {
+    right: 50%;
+    bottom: 6%;
+    transform: translateX(50%);
+  }
+
+  .map-happiness:hover {
+    transform: translateX(50%) translateY(-5px);
+  }
+
+  .dream-map-progress {
+    font-size: 0.75rem;
+  }
+}

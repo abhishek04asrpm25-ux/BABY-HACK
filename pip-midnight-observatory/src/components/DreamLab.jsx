@@ -5,6 +5,7 @@ const dreams = {
     icon: "\u2601\uFE0F",
     name: "CALM",
     color: "soft",
+    location: "CLOUD GARDEN",
     stories: [
       {
         text: "Pip has packed a soft cloud journey for a peaceful night.",
@@ -28,6 +29,7 @@ const dreams = {
     icon: "\u2728",
     name: "ADVENTURE",
     color: "bright",
+    location: "STAR EXPRESS",
     stories: [
       {
         text: "Pip has prepared a rooftop adventure beneath a sky full of stars.",
@@ -51,6 +53,7 @@ const dreams = {
     icon: "\uD83C\uDF19",
     name: "MYSTERY",
     color: "mysterious",
+    location: "MOON FOREST",
     stories: [
       {
         text: "Pip has packed a moonlit path through a quiet cloud forest.",
@@ -74,6 +77,7 @@ const dreams = {
     icon: "\uD83C\uDF08",
     name: "HAPPINESS",
     color: "happy",
+    location: "RAINBOW ISLAND",
     stories: [
       {
         text: "Pip has prepared a bright little dream filled with laughter and sunshine.",
@@ -136,6 +140,7 @@ function DreamLab() {
       name: dreams[selectedDream].name,
       icon: dreams[selectedDream].icon,
       color: dreams[selectedDream].color,
+      location: dreams[selectedDream].location,
       story,
     };
 
@@ -150,8 +155,14 @@ function DreamLab() {
     setPassportOpen((open) => !open);
   };
 
+  const isDiscovered = (key) => {
+    return dreamHistory.some((dream) => dream.key === key);
+  };
+
   return (
     <main className="dream-lab-page">
+      {/* HERO */}
+
       <section className="dream-lab-hero">
         <div className="dream-lab-heading">
           <p className="section-eyebrow">PIP'S DREAM LAB</p>
@@ -178,6 +189,8 @@ function DreamLab() {
           </div>
         </div>
       </section>
+
+      {/* DREAM SELECTOR */}
 
       <section className="dream-selector">
         <div className="dream-selector-header">
@@ -238,6 +251,8 @@ function DreamLab() {
           </p>
         )}
       </section>
+
+      {/* GENERATED DREAM */}
 
       {generatedDream && (
         <>
@@ -305,6 +320,8 @@ function DreamLab() {
         </>
       )}
 
+      {/* DREAM PASSPORT */}
+
       {generatedDream && passportOpen && (
         <section
           className="dream-passport"
@@ -350,6 +367,8 @@ function DreamLab() {
           </div>
         </section>
       )}
+
+      {/* DREAM COLLECTION */}
 
       {dreamHistory.length > 0 && (
         <section className="dream-history">
@@ -400,6 +419,222 @@ function DreamLab() {
           </div>
         </section>
       )}
+
+      {/* DREAM MAP */}
+
+      <section className="dream-map-section">
+        <div className="dream-map-heading">
+          <p className="section-eyebrow">
+            STEP 03
+          </p>
+
+          <h2>
+            Pip's Dream Observatory
+          </h2>
+
+          <p className="dream-intro">
+            Create dreams to discover new places in Pip's sky.
+          </p>
+        </div>
+
+        <div className="dream-map">
+          <div className="dream-map-center">
+            <span className="map-center-star">
+              {"\u2726"}
+            </span>
+
+            <strong>
+              PIP'S
+              <br />
+              OBSERVATORY
+            </strong>
+
+            <small>
+              DREAM SKY
+            </small>
+          </div>
+
+          <button
+            type="button"
+            className={`dream-map-node map-calm ${
+              isDiscovered("calm")
+                ? "map-node-discovered"
+                : ""
+            }`}
+            onClick={() => {
+              setSelectedDream("calm");
+
+              if (isDiscovered("calm")) {
+                const dream = dreamHistory.find(
+                  (item) => item.key === "calm"
+                );
+
+                if (dream) {
+                  setGeneratedDream(dream);
+                  setPassportOpen(true);
+                  setPipMessage(
+                    pipReactions.calm
+                  );
+                }
+              }
+            }}
+          >
+            <span className="map-node-icon">
+              {"\u2601\uFE0F"}
+            </span>
+
+            <strong>
+              CLOUD GARDEN
+            </strong>
+
+            <small>
+              {isDiscovered("calm")
+                ? "DISCOVERED"
+                : "UNDISCOVERED"}
+            </small>
+          </button>
+
+          <button
+            type="button"
+            className={`dream-map-node map-adventure ${
+              isDiscovered("adventure")
+                ? "map-node-discovered"
+                : ""
+            }`}
+            onClick={() => {
+              setSelectedDream("adventure");
+
+              if (isDiscovered("adventure")) {
+                const dream = dreamHistory.find(
+                  (item) => item.key === "adventure"
+                );
+
+                if (dream) {
+                  setGeneratedDream(dream);
+                  setPassportOpen(true);
+                  setPipMessage(
+                    pipReactions.adventure
+                  );
+                }
+              }
+            }}
+          >
+            <span className="map-node-icon">
+              {"\u2728"}
+            </span>
+
+            <strong>
+              STAR EXPRESS
+            </strong>
+
+            <small>
+              {isDiscovered("adventure")
+                ? "DISCOVERED"
+                : "UNDISCOVERED"}
+            </small>
+          </button>
+
+          <button
+            type="button"
+            className={`dream-map-node map-mystery ${
+              isDiscovered("mystery")
+                ? "map-node-discovered"
+                : ""
+            }`}
+            onClick={() => {
+              setSelectedDream("mystery");
+
+              if (isDiscovered("mystery")) {
+                const dream = dreamHistory.find(
+                  (item) => item.key === "mystery"
+                );
+
+                if (dream) {
+                  setGeneratedDream(dream);
+                  setPassportOpen(true);
+                  setPipMessage(
+                    pipReactions.mystery
+                  );
+                }
+              }
+            }}
+          >
+            <span className="map-node-icon">
+              {"\uD83C\uDF19"}
+            </span>
+
+            <strong>
+              MOON FOREST
+            </strong>
+
+            <small>
+              {isDiscovered("mystery")
+                ? "DISCOVERED"
+                : "UNDISCOVERED"}
+            </small>
+          </button>
+
+          <button
+            type="button"
+            className={`dream-map-node map-happiness ${
+              isDiscovered("happiness")
+                ? "map-node-discovered"
+                : ""
+            }`}
+            onClick={() => {
+              setSelectedDream("happiness");
+
+              if (isDiscovered("happiness")) {
+                const dream = dreamHistory.find(
+                  (item) => item.key === "happiness"
+                );
+
+                if (dream) {
+                  setGeneratedDream(dream);
+                  setPassportOpen(true);
+                  setPipMessage(
+                    pipReactions.happiness
+                  );
+                }
+              }
+            }}
+          >
+            <span className="map-node-icon">
+              {"\uD83C\uDF08"}
+            </span>
+
+            <strong>
+              RAINBOW ISLAND
+            </strong>
+
+            <small>
+              {isDiscovered("happiness")
+                ? "DISCOVERED"
+                : "UNDISCOVERED"}
+            </small>
+          </button>
+        </div>
+
+        <div className="dream-map-progress">
+          <span>
+            {"\u2726"}
+          </span>
+
+          <strong>
+            {dreamHistory.length > 0
+              ? `${new Set(
+                  dreamHistory.map(
+                    (dream) => dream.key
+                  )
+                ).size} / 4 dream worlds discovered`
+              : "0 / 4 dream worlds discovered"}
+          </strong>
+
+          <span>
+            {"\u2726"}
+          </span>
+        </div>
+      </section>
     </main>
   );
 }
