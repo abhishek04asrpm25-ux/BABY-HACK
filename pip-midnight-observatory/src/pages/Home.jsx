@@ -35,14 +35,7 @@ const pipMessage = {
           I build the dreams you fall asleep inside.
         </p>
 
-        <button
-  className="dream-button"
-  onClick={() => {
-    window.location.href = "/dream-lab";
-  }}
->
-  Enter the Dream Lab {"\u2726"}
-</button>
+        
 {secretFound && (
   <p className="pip-secret" role="status">
     ✨ You found Pip's secret! You are a true dream explorer.
