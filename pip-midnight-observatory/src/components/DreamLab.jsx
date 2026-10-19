@@ -113,6 +113,17 @@ function DreamLab() {
   const [generatedDream, setGeneratedDream] = useState(null);
   const [nextDreamNumber, setNextDreamNumber] = useState(1);
   const [dreamHistory, setDreamHistory] = useState([]);
+  const getPipMessage = () => {
+  if (generatedDream) {
+    return `Pip says: Your ${generatedDream.name.toLowerCase()} dream is ready. ✦`;
+  }
+
+  if (selectedDream) {
+    return `Pip says: ${dreams[selectedDream].name.toLowerCase()} sounds perfect tonight.`;
+  }
+
+  return "Pip is waiting for you to choose a feeling.";
+};
   const [passportOpen, setPassportOpen] = useState(false);
   const [pipMessage, setPipMessage] = useState("");
 
@@ -193,11 +204,41 @@ function DreamLab() {
       {/* DREAM SELECTOR */}
 
       <section className="dream-selector">
+        <section className="dream-protocol">
+  <div className="protocol-item">
+    <span>01</span>
+    <strong>FEEL</strong>
+    <p>Choose how your dream should feel.</p>
+  </div>
+
+  <div className="protocol-line"></div>
+
+  <div className="protocol-item">
+    <span>02</span>
+    <strong>CREATE</strong>
+    <p>Pip builds a dream from your feeling.</p>
+  </div>
+
+  <div className="protocol-line"></div>
+
+  <div className="protocol-item">
+    <span>03</span>
+    <strong>DISCOVER</strong>
+    <p>Keep your dream in your collection.</p>
+  </div>
+</section>
         <div className="dream-selector-header">
           <p className="section-eyebrow">STEP 01</p>
 
           <h2>Choose your feeling</h2>
         </div>
+        <div className="pip-dream-message" aria-live="polite">
+  <span className="pip-message-star">✦</span>
+
+  <p>{getPipMessage()}</p>
+
+  <span className="pip-message-star">✦</span>
+</div>
 
         <div className="dream-options">
           {Object.entries(dreams).map(([key, dream]) => (
@@ -215,13 +256,28 @@ function DreamLab() {
             >
               <span className="dream-icon">{dream.icon}</span>
 
-              <span className="dream-option-name">
-                {dream.name}
-              </span>
+              <span className="dream-icon">{dream.icon}</span>
 
-              <span className="dream-option-arrow">
-                {"\u2192"}
-              </span>
+<span className="dream-option-name">
+  {dream.name}
+</span>
+
+<span className="dream-option-description">
+  {key === "calm" && "Soft clouds, quiet skies & peaceful moments."}
+  {key === "adventure" && "Starry journeys, hidden worlds & discoveries."}
+  {key === "mystery" && "Moonlit clues, secrets & unexplored places."}
+  {key === "happiness" && "Rainbow skies, laughter & little surprises."}
+</span>
+
+<span className="dream-option-bottom">
+  <span className="dream-option-status">
+    {selectedDream === key ? "SELECTED" : "EXPLORE"}
+  </span>
+
+  <span className="dream-option-arrow">
+    {"\u2192"}
+  </span>
+</span>
             </button>
           ))}
         </div>
@@ -388,11 +444,8 @@ function DreamLab() {
                 type="button"
                 key={dream.id}
                 className="dream-history-item"
-                onClick={() => {
-                  setGeneratedDream(dream);
-                  setPassportOpen(true);
-                  setPipMessage(pipReactions[dream.key]);
-                }}
+                onClick={() => setGeneratedDream(dream)}
+aria-label={`Revisit Dream #${String(dream.number).padStart(3, "0")} — ${dream.name}`}
               >
                 <span className="dream-history-icon">
                   {dream.icon}

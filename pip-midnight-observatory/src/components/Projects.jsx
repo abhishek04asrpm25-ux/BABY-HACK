@@ -62,6 +62,11 @@ function Projects() {
       </section>
 
       <section className="projects-grid-section">
+        <div className="workshop-map-label">
+  <span className="workshop-map-star">✦</span>
+  <span>THREE LITTLE DISCOVERIES</span>
+  <span className="workshop-map-star">✦</span>
+</div>
         <div className="projects-grid">
           {projects.map((project, index) => {
             const Icon = project.icon;
@@ -69,9 +74,9 @@ function Projects() {
 
             return (
               <article
-                className={`project-card ${
-                  isActive ? "project-active" : ""
-                }`}
+  className={`project-card project-${index + 1} ${
+    isActive ? "project-active" : ""
+  }`}
                 key={project.number}
               >
                 <div className="project-top">

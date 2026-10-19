@@ -41,7 +41,7 @@ function Story() {
 
           return (
             <motion.article
-              className="story-scene"
+              className={`story-scene story-scene-${scene.number}`}
               key={scene.number}
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
