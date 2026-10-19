@@ -2,6 +2,21 @@ import pipAvatar from "../assets/pip_avatar_cloud.webp";
 import { useSite } from "../context/SiteContext";
 function Home() {
   const { handlePipClick, pipClicks, secretFound } = useSite();
+  const pipMood =
+  pipClicks >= 5
+    ? "excited"
+    : pipClicks >= 3
+    ? "curious"
+    : pipClicks >= 1
+    ? "happy"
+    : "sleepy";
+
+const pipMessage = {
+  sleepy: "Pip is waiting for a dream explorer...",
+  happy: "Pip is happy you're here! ✨",
+  curious: "Pip thinks there might be something hidden nearby...",
+  excited: "Pip knows you've discovered something special! 🌟",
+}[pipMood];
 
   return (
     <main className="hero">
@@ -63,6 +78,9 @@ function Home() {
   style={{ cursor: "pointer" }}
 />
         </div>
+        <p className={`pip-mood pip-mood-${pipMood}`} role="status">
+  {pipMessage}
+</p>
       </div>
 
       <p className="scroll-hint">

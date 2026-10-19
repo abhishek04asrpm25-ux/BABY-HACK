@@ -2336,3 +2336,162 @@ button {
     gap: 10px;
   }
 }
+.pip-reaction {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 18px 24px;
+  border: 1px solid rgba(163, 64, 99, 0.25);
+  border-radius: 18px;
+  background: rgba(247, 231, 236, 0.65);
+  color: #5c4033;
+  text-align: center;
+  line-height: 1.7;
+  animation: pipReactionAppear 0.35s ease-out;
+}
+
+@keyframes pipReactionAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app.dream-mode .pip-reaction {
+  background: rgba(40, 31, 66, 0.85);
+  border-color: rgba(205, 174, 255, 0.35);
+  color: #f4eaff;
+}
+.pip-mood {
+  margin: 18px auto 0;
+  max-width: 420px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.pip-mood-sleepy {
+  opacity: 0.75;
+}
+
+.pip-mood-happy {
+  transform: translateY(-2px);
+}
+
+.pip-mood-curious {
+  transform: translateY(-3px);
+}
+
+.pip-mood-excited {
+  transform: translateY(-4px) scale(1.02);
+  font-weight: 600;
+}
+.passport-button-area {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.passport-button {
+  border: 1px solid rgba(163, 64, 99, 0.35);
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.passport-button:hover {
+  transform: translateY(-2px);
+  background: rgba(163, 64, 99, 0.08);
+}
+
+.dream-passport {
+  max-width: 620px;
+  margin: 40px auto;
+  padding: 38px;
+  text-align: center;
+  border: 2px solid rgba(163, 64, 99, 0.35);
+  border-radius: 28px;
+  background: rgba(255, 248, 241, 0.92);
+  box-shadow: 0 18px 50px rgba(92, 64, 51, 0.12);
+  animation: passportAppear 0.5s ease-out;
+}
+
+.passport-stars {
+  letter-spacing: 10px;
+  margin-bottom: 18px;
+  font-size: 1.1rem;
+}
+
+.dream-passport h2 {
+  margin: 8px 0 20px;
+  font-size: 2rem;
+}
+
+.passport-icon {
+  font-size: 3.5rem;
+  margin: 10px 0;
+}
+
+.passport-mood {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+.passport-story {
+  margin: 20px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(247, 231, 236, 0.65);
+}
+
+.passport-story p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.passport-detail {
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.passport-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(163, 64, 99, 0.3);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+@keyframes passportAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.app.dream-mode .dream-passport {
+  background: rgba(35, 27, 54, 0.92);
+  border-color: rgba(205, 174, 255, 0.35);
+}
